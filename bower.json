@@ -1,0 +1,27 @@
+{
+  "name": "jquery.rivets-template",
+  "main": "jquery.rivets-template.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/theblacksmith/jquery.rivets-template",
+  "authors": [
+    "The Blacksmith (a.k.a. Saulo Vallory) <me@saulovallory.com>"
+  ],
+  "description": "jQuery plugin which adds a .template() method for binding Rivets templates",
+  "keywords": [
+    "jquery",
+    "rivets",
+    "template"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rivets": "~0.6.5"
+  }
+}
