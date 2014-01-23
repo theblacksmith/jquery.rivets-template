@@ -9,7 +9,7 @@ if(typeof(rivets) == "undefined") {
  * A simple jQuery Plugin template that can optionally be loaded as an AMD module
  *
  * @author The Blacksmith (a.k.a Saulo Vallory)
- * @version  0.0.1
+ * @version  0.0.2
  */
 (function (factory) {
   if (typeof define === 'function' && define.amd) {
@@ -28,9 +28,9 @@ if(typeof(rivets) == "undefined") {
 
   var configured = false;
 
-  function configRivets(options) {
+  function configRivets() {
     if(configured) return;
-    rivets.configure(options);
+    rivets.configure($.fn.bindTemplateTo.config.template);
     configured = true;
   }
 
@@ -38,14 +38,15 @@ if(typeof(rivets) == "undefined") {
     constructor: Rivets,
     init: function(model) {
       configRivets();
-      //Observable.makeObservable(model);
-      console.log('binding: ', this.$el);
-      console.log('model: ', model);
+      if($.fn.bindTemplateTo.config.debug) {
+        console.log('template: ', this.$el);
+        console.log('model: ', model);
+      }
       rivets.bind(this.$el, model);
     }
   };
 
-  $.fn.template = function(model) {
+  $.fn.bindTemplateTo = function(model) {
     return this.each(function() {
       var $this = $(this),
       // don't call again if already initialised on this object
@@ -56,24 +57,17 @@ if(typeof(rivets) == "undefined") {
     });
   };
 
-  $.fn.template.defaults = {
-    prefix: 'jq'/*,
-    adapter: {
-      subscribe: function(obj, keypath, callback) {
-        obj.on(keypath, callback);
-      },
-
-      unsubscribe: function(obj, keypath, callback) {
-        obj.off(keypath, callback);
-      },
-
-      read: function(obj, keypath) {
-        return obj.get(keypath);
-      },
-
-      publish: function(obj, keypath, value) {
-        obj.set(keypath, value);
-      }
-    }*/
+  $.fn.bindTemplateTo.config = {
+    debug: false,
+    template: {
+      prefix: 'rv'
+    }
   };
+
+  $.fn.bindTemplateTo.configure = function(options) {
+    $.fn.bindTemplateTo.config = $.extend(
+      {},
+      $.fn.bindTemplateTo.config,
+      options);
+  }
 }));
