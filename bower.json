@@ -1,7 +1,7 @@
 {
   "name": "jquery.rivets-template",
   "main": "jquery.rivets-template.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/theblacksmith/jquery.rivets-template",
   "authors": [
     "The Blacksmith (a.k.a. Saulo Vallory) <me@saulovallory.com>"
